@@ -21,7 +21,6 @@
 
 You can access the deployed app here:  
 [https://k78x0p-xiaoke-xu.shinyapps.io/deployment/](https://k78x0p-xiaoke-xu.shinyapps.io/deployment/)  
-*(Replace with your actual deployment URL)*
 
 ---
 
@@ -31,7 +30,6 @@ EasyPlot/
 ├── functions.R
 ├── DESCRIPTION
 └── README.md
-
 
 ---
 
@@ -43,12 +41,16 @@ EasyPlot/
 git clone https://github.com/macrophage666/EasyPlot
 cd EasyPlot
 
+---
+
 2. Open R and install dependencies (if renv is used):
 install.packages("renv")
 renv::restore()
 
 3. Run the app:
 shiny::runApp()
+
+---
 
 📦 Dependencies
 
