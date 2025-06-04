@@ -11,7 +11,7 @@ library(bslib)
 # User Interface
 ui <- page_navbar(
   # App title ----
-  title = "Kinetic Lab for Y-axis (KLY)",
+  title = "Easy Plot",
   id = "tabs",
   theme = bs_theme(bootswatch = "minty"),
   
