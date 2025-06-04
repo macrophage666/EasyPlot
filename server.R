@@ -885,8 +885,8 @@ server <- function(input, output, session) {
     df <- data1()
     rownames(df) <- df[,1]
     df <- df[,-1]
+    req(any(sapply(df,is.numeric)) == TRUE)
     df <- as.matrix(df)
-    req(df)
     show_col_names <- TRUE
     show_row_names <- TRUE
     col_ha <- NULL
