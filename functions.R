@@ -12,6 +12,9 @@ stats_test <- function(data,group=NULL, subgroup,test_for="subgroup",
     df <- data[,c(group,subgroup, value)]
     colnames(df) <- c("group","subgroup","value")
   }
+  if (length(unique(df$group)) == 1){
+    return(print("Please provide at least two groups"))
+  }
   if (test.method == "t test"|| test.method == "Mann-Whitney U test"){
     if(length(unique(df$group)) > 2){
       return(print(paste0("Only two groups are allowed for ",test.method)))
@@ -474,7 +477,7 @@ Box.plot <- function(data, x_var, y_var, y_lab = FALSE,grouped = F,subgroup = "N
 }
 
 # Density plot function
-Dens.plot <- function(data,x_var,group.by="NULL", col_by_line = T, palette = "Set1", binwidth = 5,
+Dens.plot <- function(data,x_var,group.by="NULL", col_by_line = T, palette = "Set1",
                       add_mean_line = T, den.alpha = 0.5,add_histo = F,add_legend = T,
                       x_lab = TRUE, y_lab = TRUE, y_lab_text = "", x_lab_text = "", customized_color = "",
                       den.col = "black",den.fill = "lightgrey",histo.col = "black",histo.fill = "white"){
@@ -497,7 +500,7 @@ Dens.plot <- function(data,x_var,group.by="NULL", col_by_line = T, palette = "Se
     }else{
       p <- ggplot(df, aes(x=value))+
         geom_histogram(aes(y=after_stat(density)),position = "identity", 
-                       fill = histo.fill, color = histo.col, binwidth = binwidth)+
+                       fill = histo.fill, color = histo.col)+
         geom_density(fill = den.fill,color = den.col,alpha = den.alpha)
     }
   }else{
@@ -515,13 +518,13 @@ Dens.plot <- function(data,x_var,group.by="NULL", col_by_line = T, palette = "Se
       if (col_by_line == T){
         p <- ggplot(df, aes(x=value, color = group))+
           geom_histogram(aes(y=after_stat(density),fill = group),
-                         position = "identity",alpha=den.alpha,binwidth = binwidth)+
+                         position = "identity",alpha=den.alpha)+
           geom_density()
         
       }else{
         p <- ggplot(df, aes(x=value, fill = group, color = group))+
           geom_histogram(aes(y=after_stat(density)),position = "identity",
-                         alpha=den.alpha,binwidth = binwidth)+
+                         alpha=den.alpha)+
           geom_density(alpha = den.alpha)
       }
     }

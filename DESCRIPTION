@@ -1,0 +1,26 @@
+Package: Easy Plot
+Type: Shiny
+Title: Easy Plot – Interactive Data Visualization App
+Version: 0.1.0
+Author: Xiaoke Xu
+Maintainer: Xiaoke Xu <xxu871895@gmail.com>
+Description: A general-purpose Shiny application that supports plotting various types of graphs with adjustable parameters for data exploration.
+License: MIT
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.3
+Depends:
+    R (>= 4.4.2)
+Imports:
+    colourpicker,
+    bslib,
+    ggplot2,
+    ggsignif
+    dplyr,
+    tidyr,
+    ComplexHeatmap,
+    survminer,
+    cowplot,
+    survival,
+    gridExtra,
+    RColorBrewer
