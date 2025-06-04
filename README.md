@@ -29,6 +29,7 @@ EasyPlot<br/>
 ├── server.R<br/>
 ├── functions.R<br/>
 ├── DESCRIPTION<br/>
+├── LICENSE<br/>
 └── README.md<br/>
 
 ---
