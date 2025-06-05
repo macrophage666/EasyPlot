@@ -8,9 +8,12 @@ stats_test <- function(data,group=NULL, subgroup,test_for="subgroup",
   if (subgroup == "NULL"){
     df <- data[,c(group, value)]
     colnames(df) <- c("group","value")
+    df$group <- as.factor(df$group)
   }else if (subgroup != "NULL"){
     df <- data[,c(group,subgroup, value)]
     colnames(df) <- c("group","subgroup","value")
+    df$group <- as.factor(df$group)
+    df$subgroup <- as.factor(df$subgroup)
   }
   if (length(unique(df$group)) == 1){
     return(print("Please provide at least two groups"))
@@ -132,6 +135,7 @@ Bar.plot <- function(data, x_var, y_var, errbar = "sd", grouped = F,wrap_facet =
   if (grouped == F||subgroup == "NULL"){
     df <- data[,c(x_var, y_var)]
     colnames(df) <- c("group","value")
+    df$group <- as.factor(df$group)
     if (errbar == "se"){
       plot_df <- df%>%
         group_by(group) %>%
@@ -150,6 +154,8 @@ Bar.plot <- function(data, x_var, y_var, errbar = "sd", grouped = F,wrap_facet =
   }else if (grouped == T && subgroup != "NULL"){
     df <- data[,c(x_var, y_var,subgroup)]
     colnames(df) <- c("group","value","subgroup")
+    df$group <- as.factor(df$group)
+    df$subgroup <- as.factor(df$subgroup)
     if (errbar == "se"){
       plot_df <- df%>%
         group_by(group, subgroup) %>%
@@ -307,9 +313,12 @@ Box.plot <- function(data, x_var, y_var, y_lab = FALSE,grouped = F,subgroup = "N
   if (grouped == F||subgroup == "NULL"){
     df <- data[,c(x_var, y_var)]
     colnames(df) <- c("group","value")
+    df$group <- as.factor(df$group)
   }else if (grouped == T && subgroup != "NULL"){
     df <- data[,c(x_var, y_var,subgroup)]
     colnames(df) <- c("group","value","subgroup")
+    df$group <- as.factor(df$group)
+    df$subgroup <- as.factor(df$subgroup)
   }
   
   if (y_lab == FALSE){
@@ -506,6 +515,7 @@ Dens.plot <- function(data,x_var,group.by="NULL", col_by_line = T, palette = "Se
   }else{
     df <- data[,c(x_var,group.by)]
     colnames(df) <- c("value","group")
+    df$group <- as.factor(df$group)
     if (add_histo == F){
       if (col_by_line == T){
         p <- ggplot(df, aes(x=value, color = group))+
